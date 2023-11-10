@@ -8,10 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+
     - uses: actions/checkout@v3
+
     - name: cd
       run: cd higan
-    - name: configure
-      run: ./configure
+
     - name: make
       run: make
