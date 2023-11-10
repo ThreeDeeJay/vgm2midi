@@ -3,8 +3,6 @@ name: C/C++ CI
 on:
   push:
     branches: [ "nsf-midi" ]
-  pull_request:
-    branches: [ "nsf-midi" ]
 
 jobs:
   build:
@@ -13,15 +11,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: configure
+    - name: make
       run: |
         apt-get update && apt-get -y install build-essential mingw-w64 mkdocs
         make -C higan target=higan platform=windows compiler="x86_64-w64-mingw32-g++" windres="x86_64-w64-mingw32-windres"
-        LC_ALL=C.UTF-8 mkdocs build
         mkdir higan-nightly
         cp -a higan/out/higan higan-nightly/higan.exe
-        cp -a higan/systems/ higan-nightly/
-        cp -a shaders higan-nightly/
-        cp -a docs_build higan-nightly/docs
-        cp -a GPLv3.txt higan-nightly/
-
