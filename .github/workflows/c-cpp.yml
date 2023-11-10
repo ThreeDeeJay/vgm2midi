@@ -13,6 +13,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: make
       run: |
+        cd higan
         apt-get update && apt-get -y install build-essential mingw-w64 mkdocs
         make -C higan target=higan platform=windows compiler="x86_64-w64-mingw32-g++" windres="x86_64-w64-mingw32-windres"
         mkdir higan-nightly
